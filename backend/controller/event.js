@@ -5,7 +5,6 @@ const Event = require("../model/event");
 const ErrorHandler = require("../utils/ErrorHandler");
 const { isSeller, isAdmin, isAuthenticated } = require("../middleware/auth");
 const router = express.Router();
-const cloudinary = require("cloudinary");
 const { upload } = require("../multer");
 const fs = require("fs");
 
@@ -74,6 +73,7 @@ router.get(
 // delete event of a shop
 router.delete(
   "/delete-shop-event/:id",
+  isSeller,
   catchAsyncErrors(async (req, res, next) => {
     try {
       const productId = req.params.id;
