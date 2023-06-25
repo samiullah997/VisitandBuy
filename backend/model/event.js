@@ -28,6 +28,9 @@ const eventSchema = new mongoose.Schema({
     tags:{
         type: String,
     },
+    sourceName: {
+        type: String,
+      },
     originalPrice:{
         type: Number,
     },
