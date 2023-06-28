@@ -187,7 +187,15 @@ const App = () => {
           }
         />
         <Route
-          path="/dashboard-create-product"
+          path="/dashboard-create-product/"
+          element={
+            <SellerProtectedRoute>
+              <ShopCreateProduct />
+            </SellerProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard-create-product/:id"
           element={
             <SellerProtectedRoute>
               <ShopCreateProduct />
