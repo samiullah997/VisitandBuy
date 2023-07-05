@@ -22,6 +22,7 @@ const CreateEvent = () => {
   const [stock, setStock] = useState();
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [sourceName, setSourceName] = useState("");
 
   const handleStartDateChange = (e) => {
     const startDate = new Date(e.target.value);
@@ -61,6 +62,7 @@ const CreateEvent = () => {
     e.preventDefault();
 
     let files = Array.from(e.target.files);
+    setImages([]);
     setImages((prevImages) => [...prevImages, ...files]);
   };
 
@@ -80,6 +82,7 @@ const CreateEvent = () => {
     newForm.append("discountPrice", discountPrice);
     newForm.append("stock", stock);
     newForm.append("shopId", seller._id);
+    newForm.append("sourceName", sourceName);
     newForm.append("start_Date", startDate.toISOString());
     newForm.append("Finish_Date", endDate.toISOString());
     dispatch(createevent(newForm));
@@ -150,6 +153,18 @@ const CreateEvent = () => {
             className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             onChange={(e) => setTags(e.target.value)}
             placeholder="Enter your event product tags..."
+          />
+        </div>
+        <br />
+        <div>
+          <label className="pb-2">Source Name</label>
+          <input
+            type="text"
+            name="sourceName"
+            value={sourceName}
+            className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            onChange={(e) => setSourceName(e.target.value)}
+            placeholder="Enter Source Name..."
           />
         </div>
         <br />
