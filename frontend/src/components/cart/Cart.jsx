@@ -114,7 +114,7 @@ const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
 
   return (
     <div className="border-b p-4">
-      <div className="w-full flex items-center">
+      <div className="w-full flex ">
         <div>
           <div
             className={`bg-[#e44343] border border-[#e4434373] rounded-full w-[25px] h-[25px] ${styles.noramlFlex} justify-center cursor-pointer`}
@@ -145,7 +145,7 @@ const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
           </h4>
         </div>
         <RxCross1
-          className="cursor-pointer"
+          className="cursor-pointer w-14 h-4 rounded-full bg-[#ff2b2b] flex items-center justify-center text-white font-bold"
           onClick={() => removeFromCartHandler(data)}
         />
       </div>
