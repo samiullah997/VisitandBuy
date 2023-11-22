@@ -6,15 +6,17 @@ import {
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../../../styles/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { addTocart } from "../../../redux/actions/cart";
+import { backend_url, server } from "../../../server";
 import {
   addToWishlist,
   removeFromWishlist,
 } from "../../../redux/actions/wishlist";
+import axios from "axios";
 
 const ProductDetailsCard = ({ setOpen, data }) => {
   const { cart } = useSelector((state) => state.cart);
@@ -22,9 +24,31 @@ const ProductDetailsCard = ({ setOpen, data }) => {
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const [click, setClick] = useState(false);
+  const { user, isAuthenticated } = useSelector((state) => state.user);
+  const navigate = useNavigate();
   //   const [select, setSelect] = useState(false);
 
-  const handleMessageSubmit = () => {};
+  const handleMessageSubmit = async () => {
+    if (isAuthenticated) {
+      const groupTitle = data._id + user._id;
+      const userId = user._id;
+      const sellerId = data.shop._id;
+      await axios
+        .post(`${server}/conversation/create-new-conversation`, {
+          groupTitle,
+          userId,
+          sellerId,
+        })
+        .then((res) => {
+          navigate(`/inbox?${res.data.conversation._id}`);
+        })
+        .catch((error) => {
+          toast.error(error.response.data.message);
+        });
+    } else {
+      toast.error("Please login to create a conversation");
+    }
+  };
 
   const decrementCount = () => {
     if (count > 1) {
@@ -33,7 +57,11 @@ const ProductDetailsCard = ({ setOpen, data }) => {
   };
 
   const incrementCount = () => {
-    setCount(count + 1);
+    if (count < data.stock) {
+      setCount(count + 1);
+    } else {
+      toast.error("No More Quantiy...");
+    }
   };
 
   const addToCartHandler = (id) => {
@@ -82,11 +110,11 @@ const ProductDetailsCard = ({ setOpen, data }) => {
 
             <div className="block w-full 800px:flex">
               <div className="w-full 800px:w-[50%]">
-                <img src={`${data.images && data.images[0]?.url}`} alt="" />
+                <img src={`${backend_url}${data.images && data.images[0]}`} alt="" />
                 <div className="flex">
                   <Link to={`/shop/preview/${data.shop._id}`} className="flex">
                     <img
-                      src={`${data.images && data.images[0]?.url}`}
+                      src={`${backend_url}${data?.shop?.avatar}`}
                       alt=""
                       className="w-[50px] h-[50px] rounded-full mr-2"
                     />
@@ -94,7 +122,9 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                       <h3 className={`${styles.shop_name}`}>
                         {data.shop.name}
                       </h3>
-                      <h5 className="pb-3 text-[15px]">{data?.ratings} Ratings</h5>
+                      <h5 className="pb-3 text-[15px]">
+                        {data?.ratings} Ratings
+                      </h5>
                     </div>
                   </Link>
                 </div>
@@ -106,7 +136,9 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                     Send Message <AiOutlineMessage className="ml-1" />
                   </span>
                 </div>
-                <h5 className="text-[16px] text-[red] mt-5">(50) Sold out</h5>
+                <h5 className="text-[16px] text-[red] mt-5">
+                  {data.sold_out} Sold out
+                </h5>
               </div>
 
               <div className="w-full 800px:w-[50%] pt-5 pl-[5px] pr-[5px]">
