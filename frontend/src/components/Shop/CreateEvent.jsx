@@ -59,20 +59,10 @@ const CreateEvent = () => {
   }, [dispatch, error, success]);
 
   const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
+    e.preventDefault();
 
-    setImages([]);
-
-    files.forEach((file) => {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setImages((old) => [...old, reader.result]);
-        }
-      };
-      reader.readAsDataURL(file);
-    });
+    let files = Array.from(e.target.files);
+    setImages((prevImages) => [...prevImages, ...files]);
   };
 
   const handleSubmit = (e) => {
@@ -83,20 +73,17 @@ const CreateEvent = () => {
     images.forEach((image) => {
       newForm.append("images", image);
     });
-    const data = {
-      name,
-      description,
-      category,
-      tags,
-      originalPrice,
-      discountPrice,
-      stock,
-      images,
-      shopId: seller._id,
-      start_Date: startDate?.toISOString(),
-      Finish_Date: endDate?.toISOString(),
-    };
-    dispatch(createevent(data));
+    newForm.append("name", name);
+    newForm.append("description", description);
+    newForm.append("category", category);
+    newForm.append("tags", tags);
+    newForm.append("originalPrice", originalPrice);
+    newForm.append("discountPrice", discountPrice);
+    newForm.append("stock", stock);
+    newForm.append("shopId", seller._id);
+    newForm.append("start_Date", startDate.toISOString());
+    newForm.append("Finish_Date", endDate.toISOString());
+    dispatch(createevent(newForm));
   };
 
   return (
@@ -172,7 +159,7 @@ const CreateEvent = () => {
           <input
             type="number"
             name="price"
-            value={originalPrice}
+            value={originalPrice || ''}
             className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             onChange={(e) => setOriginalPrice(e.target.value)}
             placeholder="Enter your event product price..."
@@ -186,7 +173,7 @@ const CreateEvent = () => {
           <input
             type="number"
             name="price"
-            value={discountPrice}
+            value={discountPrice || ''}
             className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             onChange={(e) => setDiscountPrice(e.target.value)}
             placeholder="Enter your event product price with discount..."
@@ -200,7 +187,7 @@ const CreateEvent = () => {
           <input
             type="number"
             name="price"
-            value={stock}
+            value={stock || ''}
             className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             onChange={(e) => setStock(e.target.value)}
             placeholder="Enter your event product stock..."
@@ -258,7 +245,7 @@ const CreateEvent = () => {
             {images &&
               images.map((i) => (
                 <img
-                  src={i}
+                  src={URL.createObjectURL(i)}
                   key={i}
                   alt=""
                   className="h-[120px] w-[120px] object-cover m-2"
