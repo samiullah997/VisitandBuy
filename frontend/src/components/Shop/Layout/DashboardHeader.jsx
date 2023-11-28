@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { BiMessageSquareDetail } from "react-icons/bi";
 import logo from "../../../Assests/logo.png"
+import { backend_url } from "../../../server";
 
 const DashboardHeader = () => {
   const { seller } = useSelector((state) => state.seller);
@@ -21,7 +22,7 @@ const DashboardHeader = () => {
       </div>
       <div className="flex items-center">
         <div className="flex items-center mr-4">
-          <Link to="/dashboard/cupouns" className="800px:block hidden">
+          <Link to="/dashboard-coupouns" className="800px:block hidden">
             <AiOutlineGift
               color="#555"
               size={30}
@@ -54,7 +55,7 @@ const DashboardHeader = () => {
           </Link>
           <Link to={`/shop/${seller._id}`}>
             <img
-              src={`${seller.avatar?.url}`}
+              src={`${backend_url}${seller.avatar}`}
               alt=""
               className="w-[50px] h-[50px] rounded-full object-cover"
             />
