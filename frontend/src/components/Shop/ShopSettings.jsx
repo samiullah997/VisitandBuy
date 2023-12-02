@@ -21,30 +21,26 @@ const ShopSettings = () => {
   const dispatch = useDispatch();
 
   const handleImage = async (e) => {
-    const reader = new FileReader();
+    e.preventDefault();
+    const file = e.target.files[0];
+    setAvatar(file);
 
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setAvatar(reader.result);
-        axios
-          .put(
-            `${server}/shop/update-shop-avatar`,
-            { avatar: reader.result },
-            {
-              withCredentials: true,
-            }
-          )
-          .then((res) => {
-            dispatch(loadSeller());
-            toast.success("Avatar updated successfully!");
-          })
-          .catch((error) => {
-            toast.error(error.response.data.message);
-          });
-      }
-    };
+    const formData = new FormData();
 
-    reader.readAsDataURL(e.target.files[0]);
+    formData.append("image", e.target.files[0]);
+    
+    await axios.put(`${server}/shop/update-shop-avatar`, formData,{
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+        withCredentials: true,
+    }).then((res) => {
+        dispatch(loadSeller());
+        toast.success("Avatar updated successfully!")
+    }).catch((error) => {
+        toast.error(error.response.data.message);
+    })
+
   };
 
   const updateHandler = async (e) => {
@@ -77,7 +73,7 @@ const ShopSettings = () => {
         <div className="w-full flex items-center justify-center">
           <div className="relative">
             <img
-              src={avatar ? avatar : `${seller.avatar?.url}`}
+              src={avatar ? URL.createObjectURL(avatar) : `${backend_url}/${seller.avatar}`}
               alt=""
               className="w-[200px] h-[200px] rounded-full cursor-pointer"
             />
