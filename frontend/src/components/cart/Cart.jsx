@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addTocart, removeFromCart } from "../../redux/actions/cart";
 import { toast } from "react-toastify";
+import { backend_url } from "../../server";
 
 const Cart = ({ setOpenCart }) => {
   const { cart } = useSelector((state) => state.cart);
@@ -96,7 +97,7 @@ const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
   const totalPrice = data.discountPrice * value;
 
   const increment = (data) => {
-    if (data.stock < value) {
+    if (data.stock <= value) {
       toast.error("Product stock limited!");
     } else {
       setValue(value + 1);
@@ -130,7 +131,7 @@ const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
           </div>
         </div>
         <img
-          src={`${data?.images[0]?.url}`}
+          src={`${backend_url}${data?.images[0]}`}
           alt=""
           className="w-[130px] h-min ml-2 mr-2 rounded-[5px]"
         />
