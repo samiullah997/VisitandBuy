@@ -229,13 +229,13 @@ export const navItems = [
       title: "Gifts",
       subTitle: "",
       image_Url:
-        "https://securecdn.pymnts.com/wp-content/uploads/2014/11/Gifts-Photo-700x489.jpg",
+        "https://static.vecteezy.com/system/resources/thumbnails/024/704/175/small_2x/3d-illustration-icon-of-gift-box-with-heart-for-ui-ux-web-mobile-app-social-media-ads-png.png",
     },
     {
       id: 7,
       title: "Pet Care",
       subTitle: "",
-      image_Url: "https://cdn.openpr.com/T/c/Tc15444071_g.jpg",
+      image_Url: "https://seeklogo.com/images/P/pet-care-logo-84F2C40A44-seeklogo.com.png",
     },
     {
       id: 8,
@@ -320,7 +320,6 @@ export const navItems = [
       rating: 5,
       total_sell: 80,
       stock: 10,
-      category:"Mobile & Tablets"
     },
     {
       id: 1,
@@ -351,7 +350,6 @@ export const navItems = [
       rating: 4,
       total_sell: 75,
       stock: 10,
-      category:"Computers & Laptop"
     },
     {
       id: 4,
@@ -376,7 +374,6 @@ export const navItems = [
           url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
         },
         ratings: 4.2,
-      category:"Others"
       },
       price: 100,
       discount_price: 79,
@@ -413,7 +410,6 @@ export const navItems = [
       rating: 5,
       total_sell: 49,
       stock: 10,
-      category:"Shoes"
     },
     {
       id: 1,
