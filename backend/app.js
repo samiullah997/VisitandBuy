@@ -15,9 +15,10 @@ const path = require("path");
 // );
 
 app.use(cors({
-  origin: ['http://localhost:3000',],
+  origin: ['http://localhost:3000', 'http://192.168.1.4:3000', 'http://192.168.1.7:3000'],
   credentials: true
 }));
+
 
 app.use(express.json());
 app.use(cookieParser());
