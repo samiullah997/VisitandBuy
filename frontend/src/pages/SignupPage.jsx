@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Signup from "../components/SignUp/SignUp";
+import SignUp from "../components/SignUp/SignUp";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const SignupPage = () => {
   }, [])
   return (
     <div>
-        <Signup />
+        <SignUp />
     </div>
   )
 }
