@@ -5,14 +5,18 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-app.use(
-  cors({
-    // origin: ['https://haramsales-o5oq.vercel.app',],
-    origin: "https://haramsales-o5oq.vercel.app",
-    credentials: true, //access-control-allow-credentials:true
-    optionSuccessStatus: 200,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     credentials: true, //access-control-allow-credentials:true
+//     optionSuccessStatus: 200,
+//   })
+// );
+
+app.use(cors({
+  origin: ['http://localhost:3000',],
+  credentials: true
+}));
 
 app.use(express.json());
 app.use(cookieParser());

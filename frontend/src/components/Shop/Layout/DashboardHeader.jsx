@@ -12,10 +12,13 @@ const DashboardHeader = () => {
     <div className="w-full h-[80px] bg-white shadow sticky top-0 left-0 z-30 flex items-center justify-between px-4">
       <div>
         <Link to="/dashboard">
-          <img
+          {/* <img
             src="https://shopo.quomodothemes.website/assets/images/logo.svg"
             alt=""
-          />
+          /> */}
+          <h1>
+            <span className="text-red-600">Haram</span>Sales
+          </h1>
         </Link>
       </div>
       <div className="flex items-center">
