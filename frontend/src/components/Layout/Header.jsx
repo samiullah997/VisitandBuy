@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import Cart from "../cart/Cart";
 import Wishlist from "../Wishlist/Wishlist";
 import { RxCross1 } from "react-icons/rx";
+import logo from "../../Assests/logo.png"
 
 const Header = ({ activeHeading }) => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -57,11 +58,12 @@ const Header = ({ activeHeading }) => {
         <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
           <div>
             <Link to="/">
-              {/* <img
-                src="https://shopo.quomodothemes.website/assets/images/logo.svg"
-                alt=""
-              /> */}
-              <h1 ><span className="text-red-600">Haram</span>Sales</h1>
+              <img
+                width={152} height={90}
+                src={logo}
+                alt="HaramSales"
+              />
+              {/* <h1 ><span className="text-red-600">Haram</span>Sales</h1> */}
             </Link>
           </div>
           {/* search box */}
@@ -217,12 +219,13 @@ const Header = ({ activeHeading }) => {
           </div>
           <div>
             <Link to="/">
-              {/* <img
-                src="https://shopo.quomodothemes.website/assets/images/logo.svg"
-                alt=""
+            <img
+                width={100} height={40}
+                src={logo}
+                alt="HaramSales"
                 className="mt-3 cursor-pointer"
-              /> */}
-              <h2 ><span className="text-red-600">Haram</span>Sales</h2>
+              />
+              {/* <h2 ><span className="text-red-600">Haram</span>Sales</h2> */}
             </Link>
           </div>
           <div>
