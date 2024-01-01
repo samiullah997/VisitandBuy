@@ -1,7 +1,6 @@
 const express = require("express");
 const User = require("../model/user");
 const router = express.Router();
-const cloudinary = require("cloudinary");
 const ErrorHandler = require("../utils/ErrorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const jwt = require("jsonwebtoken");
@@ -43,6 +42,7 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
     const activationToken = createActivationToken(user);
 
     const activationUrl = `http://89.116.34.159:3000/activation/${activationToken}`;
+    // const activationUrl = `http://localhost:3000/activation/${activationToken}`;
 
     try {
       await sendMail({
@@ -353,13 +353,6 @@ router.get(
   catchAsyncErrors(async (req, res, next) => {
     try {
       const user = await User.findById(req.params.id);
-      const filename = req.file.filename;
-      const filePath = `uploads/${filename}`;
-      fs.unlink(filePath, (err) => {
-        if (err) {
-          console.log(err);
-        }
-      });
       res.status(201).json({
         success: true,
         user,
