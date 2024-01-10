@@ -1,5 +1,9 @@
 import LoginPage from "../pages/Login";
 import SignupPage from "../pages/SignupPage";
+import AboutUsPage from "../pages/AboutUsPage.jsx"
+import CareerPage from "../pages/CareerPage.jsx"
+import ReviewPage from "../pages/ReviewPage.jsx"
+import ContactUsPage from "../pages/ContactUsPage.jsx"
 import ActivationPage from "../pages/ActivationPage";
 import HomePage from "../pages/HomePage";
 import ProductsPage from "../pages/ProductsPage";
@@ -21,6 +25,10 @@ import UserInbox from "../pages/UserInbox.jsx";
 export { 
     LoginPage,
     SignupPage,
+    AboutUsPage,
+    CareerPage,
+    ReviewPage,
+    ContactUsPage,
     ActivationPage,
     HomePage,
     ProductsPage,

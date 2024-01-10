@@ -101,8 +101,8 @@ router.put(
         return next(new ErrorHandler("Order not found with this id", 400));
       }
       if (req.body.status === "Transferred to delivery partner") {
-        order.cart.forEach(async (o) => {
-          await updateOrder(o._id, o.qty);
+        order.cart.forEach(async (item) => {
+          await updateOrder(item._id, item.qty);
         });
       }
 

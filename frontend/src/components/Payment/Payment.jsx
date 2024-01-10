@@ -206,13 +206,13 @@ const PaymentInfo = ({
   paymentHandler,
   cashOnDeliveryHandler,
 }) => {
-  const [select, setSelect] = useState(1);
+  const [select, setSelect] = useState(3);
 
   return (
     <div className="w-full 800px:w-[95%] bg-[#fff] rounded-md p-5 pb-8">
       {/* select buttons */}
       <div>
-        <div className="flex w-full pb-5 border-b mb-2">
+        {/* <div className="flex w-full pb-5 border-b mb-2">
           <div
             className="w-[25px] h-[25px] rounded-full bg-transparent border-[3px] border-[#1d1a1ab4] relative flex items-center justify-center"
             onClick={() => setSelect(1)}
@@ -224,7 +224,7 @@ const PaymentInfo = ({
           <h4 className="text-[18px] pl-2 font-[600] text-[#000000b1]">
             Pay with Debit/credit card
           </h4>
-        </div>
+        </div> */}
 
         {/* pay with card */}
         {select === 1 ? (
@@ -323,7 +323,7 @@ const PaymentInfo = ({
       <br />
       {/* paypal payment */}
       <div>
-        <div className="flex w-full pb-5 border-b mb-2">
+        {/* <div className="flex w-full pb-5 border-b mb-2">
           <div
             className="w-[25px] h-[25px] rounded-full bg-transparent border-[3px] border-[#1d1a1ab4] relative flex items-center justify-center"
             onClick={() => setSelect(2)}
@@ -335,7 +335,7 @@ const PaymentInfo = ({
           <h4 className="text-[18px] pl-2 font-[600] text-[#000000b1]">
             Pay with Paypal
           </h4>
-        </div>
+        </div> */}
 
         {/* pay with payement */}
         {select === 2 ? (

@@ -191,72 +191,79 @@ export const navItems = [
   export const categoriesData = [
     {
       id: 1,
-      title: "Computers and Laptops",
+      title: "Toys and Games",
       subTitle: "",
       image_Url:
-        "https://cdn.shopify.com/s/files/1/1706/9177/products/NEWAppleMacbookProwithM1ProChip14InchLaptop2021ModelMKGQ3LL_A_16GB_1TBSSD_custommacbd.jpg?v=1659592838",
+        "https://www.shutterstock.com/image-vector/cute-teddy-bear-toy-3d-600nw-2135118721.jpg",
     },
     {
       id: 2,
-      title: "cosmetics and body care",
+      title: "Pets Supplies",
       subTitle: "",
       image_Url:
-        "https://indian-retailer.s3.ap-south-1.amazonaws.com/s3fs-public/2021-07/kosme1.png",
+        "https://thumbs.dreamstime.com/b/cute-dog-big-bone-scalable-vectorial-representing-element-design-illustration-isolated-white-background-175558220.jpg",
     },
     {
       id: 3,
-      title: "Accesories",
+      title: "Beauty and Health Care",
       subTitle: "",
       image_Url:
-        "https://img.freepik.com/free-vector/ordering-goods-online-internet-store-online-shopping-niche-e-commerce-website-mother-buying-babies-clothes-footwear-toys-infant-accessories_335657-2345.jpg?w=2000",
+        "https://images.squarespace-cdn.com/content/v1/6052705ae77e6d3255abe996/1622667267261-YMSKTIZALUQAHXPZZVU1/Beauty+Icon.jpg",
     },
     {
       id: 4,
-      title: "Cloths",
+      title: "Art, Crafts and Sewing",
       subTitle: "",
       image_Url:
-        "https://www.shift4shop.com/2015/images/industries/clothing/clothing-apparel.png",
+        "https://img.freepik.com/premium-vector/handmade-art-craft-human-hands-hobby-isolated-icons_87689-7838.jpg?w=2000",
     },
     {
       id: 5,
-      title: "Shoes",
+      title: "Automotive Parts and Accessories",
       subTitle: "",
       image_Url:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvBQPQMVNRd6TtDkGs2dCri0Y-rxKkFOiEWw&usqp=CAU",
+        "https://img.freepik.com/premium-vector/spare-parts-car-parts-doodle-style-vector-clipart-isolated-white-background_396616-253.jpg?w=2000",
     },
     {
       id: 6,
-      title: "Gifts",
+      title: "Baby",
       subTitle: "",
       image_Url:
-        "https://securecdn.pymnts.com/wp-content/uploads/2014/11/Gifts-Photo-700x489.jpg",
+        "https://static.vecteezy.com/system/resources/previews/023/618/308/original/smiling-baby-icon-clipart-free-free-png.png",
     },
     {
       id: 7,
-      title: "Pet Care",
+      title: "Clothing, Shoes and Jewelry",
       subTitle: "",
-      image_Url: "https://cdn.openpr.com/T/c/Tc15444071_g.jpg",
+      image_Url:
+        "https://d2bzx2vuetkzse.cloudfront.net/fit-in/0x450/images_without_background/d4745986-3eba-41e5-8d3e-f988b376c04c.png",
     },
     {
       id: 8,
-      title: "Mobile and Tablets",
+      title: "Health",
       subTitle: "",
-      image_Url:
-        "https://st-troy.mncdn.com/mnresize/1500/1500/Content/media/ProductImg/original/mpwp3tua-apple-iphone-14-256gb-mavi-mpwp3tua-637986832343472449.jpg",
+      image_Url: "https://img.freepik.com/free-photo/front-view-paper-heart-with-heartbeat-world-heart-day_23-2148635130.jpg?q=10&h=200",
     },
     {
       id: 9,
-      title: "Music and Gaming",
+      title: "Sports",
       subTitle: "",
       image_Url:
-        "https://static.vecteezy.com/system/resources/previews/011/996/555/original/3d-black-headphone-illustration-ecommerce-icon-png.png",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Sport_balls.svg/400px-Sport_balls.svg.png",
     },
     {
       id: 10,
-      title: "Others",
+      title: "Home and Kitchen",
       subTitle: "",
       image_Url:
-        "https://searchspring.com/wp-content/uploads/2022/10/Hero-Image-Platform-Others-2.png",
+        "https://static.thenounproject.com/png/1311794-200.png",
+    },
+    {
+      id: 11,
+      title: "Electronics",
+      subTitle: "",
+      image_Url:
+        "https://static.vecteezy.com/system/resources/thumbnails/000/158/416/small/vector-home-electronic-icons.jpg",
     },
   ];
   
@@ -320,7 +327,6 @@ export const navItems = [
       rating: 5,
       total_sell: 80,
       stock: 10,
-      category:"Mobile & Tablets"
     },
     {
       id: 1,
@@ -351,7 +357,6 @@ export const navItems = [
       rating: 4,
       total_sell: 75,
       stock: 10,
-      category:"Computers & Laptop"
     },
     {
       id: 4,
@@ -376,7 +381,6 @@ export const navItems = [
           url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
         },
         ratings: 4.2,
-      category:"Others"
       },
       price: 100,
       discount_price: 79,
@@ -413,7 +417,6 @@ export const navItems = [
       rating: 5,
       total_sell: 49,
       stock: 10,
-      category:"Shoes"
     },
     {
       id: 1,
@@ -594,56 +597,59 @@ export const navItems = [
   export const footerProductLinks = [
     {
       name: "About us",
-      link: "/about"
+      link: "/about-us"
     },
     {
       name: "Careers",
-      link: "/carrers"
-    },
-    {
-      name: "Store Locations",
+      link: "/careers"
     },
     {
       name: "Our Blog",
+      link: "/"
     },
     {
       name: "Reviews",
+      link: "/review"
     },
   ];
   
   export const footercompanyLinks = [
     {
-      name: "Game & Video",
+      name: "Toys & Games",
+      link: "/products?category=Toys and Games"
     },
     {
-      name: "Phone &Tablets",
+      name: "Pets & Supplies",
+      link: "/products?category=Pets Supplies"
     },
     {
-      name: "Computers & Laptop",
+      name: "Beauty & Persnal Care",
+      link: "/products?category=Art, Craft and Sewing"
     },
     {
-      name: "Sport Watches",
+      name: "Art, Crafts & Sewing",
+      link: "/products?category=Beauty and Health Care"
     },
     {
-      name: "Events",
+      name: "Sports",
+      link: "/products?category=Sports"
     },
   ];
   
   export const footerSupportLinks = [
     {
       name: "FAQ",
-    },
-    {
-      name: "Reviews",
+      link: "/faq"
     },
     {
       name: "Contact Us",
+      link: "/contact"
     },
-    {
-      name: "Shipping",
-    },
-    {
-      name: "Live chat",
-    },
+    // {
+    //   name: "Shipping",
+    // },
+    // {
+    //   name: "Live chat",
+    // },
   ];
   

@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { brandingData, categoriesData } from "../../../static/data";
 import styles from "../../../styles/styles";
 
 const Categories = () => {
   const navigate = useNavigate();
+  const categoriesRef = useRef(null);
+
+  const handleScroll = (direction) => {
+    const scrollDistance = 200; // Adjust this value as needed
+    const scrollContainer = categoriesRef.current;
+
+    if (scrollContainer) {
+      if (direction === "left") {
+        scrollContainer.scrollLeft -= scrollDistance;
+      } else if (direction === "right") {
+        scrollContainer.scrollLeft += scrollDistance;
+      }
+    }
+  };
+
   return (
     <>
       <div className={`${styles.section} hidden sm:block`}>
@@ -24,31 +39,69 @@ const Categories = () => {
         </div>
       </div>
 
-      <div
-        className={`${styles.section} bg-white p-6 rounded-lg mb-12`}
-        id="categories"
-      >
-        <div className="grid grid-cols-1 gap-[5px] md:grid-cols-2 md:gap-[10px] lg:grid-cols-4 lg:gap-[20px] xl:grid-cols-5 xl:gap-[30px]">
-          {categoriesData &&
-            categoriesData.map((i) => {
-              const handleSubmit = (i) => {
-                navigate(`/products?category=${i.title}`);
-              };
-              return (
-                <div
-                  className="w-full h-[100px] flex items-center justify-between cursor-pointer overflow-hidden"
-                  key={i.id}
-                  onClick={() => handleSubmit(i)}
-                >
-                  <h5 className={`text-[18px] leading-[1.3]`}>{i.title}</h5>
-                  <img
-                    src={i.image_Url}
-                    className="w-[120px] object-cover"
-                    alt=""
-                  />
-                </div>
-              );
-            })}
+      <div className={`${styles.section} bg-white p-6 rounded-lg mb-12`}>
+        <div className="flex items-center space-x-4">
+          <button
+            className="text-3xl font-bold cursor-pointer"
+            onClick={() => handleScroll("left")}
+          >
+            {"<"}
+          </button>
+          <div
+            className={`${styles.section} bg-white p-6 rounded-lg mb-12`}
+            ref={categoriesRef}
+            id="categories"
+            style={{
+              overflowX: "auto",
+              scrollbarWidth: "none",
+              "-ms-overflow-style": "none",
+            }}
+          >
+            <style>
+              {`
+                #categories::-webkit-scrollbar {
+                  width: 0 !important;
+                  height: 0 !important;
+                }
+              `}
+            </style>
+            <div className="flex flex-nowrap space-x-4">
+              {categoriesData &&
+                categoriesData.map((i) => {
+                  const handleSubmit = () => {
+                    navigate(`/products?category=${i.title}`);
+                  };
+                  return (
+                    <div
+                      className="flex-shrink-0 w-[200px] h-[200px] cursor-pointer overflow-hidden"
+                      key={i.id}
+                      onClick={handleSubmit}
+                    >
+                      <div className="w-full h-full flex flex-col items-center justify-center border rounded-md p-4">
+                        <h5
+                          className="text-[18px] leading-[1.3] text-center"
+                          style={{ width: "200px", height: "50px" }}
+                        >
+                          {i.title}
+                        </h5>
+                        <img
+                          src={i.image_Url}
+                          style={{ width: "120px", height: "120px" }}
+                          className="object-cover mt-2"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+          <button
+            className="text-3xl font-bold cursor-pointer"
+            onClick={() => handleScroll("right")}
+          >
+            {">"}
+          </button>
         </div>
       </div>
     </>

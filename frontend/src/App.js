@@ -4,6 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   LoginPage,
   SignupPage,
+  AboutUsPage,
+  CareerPage,
+  ReviewPage,
+  ContactUsPage,
   ActivationPage,
   HomePage,
   ProductsPage,
@@ -96,6 +100,10 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/sign-up" element={<SignupPage />} />
+        <Route path="/about-us" element={<AboutUsPage />} />
+        <Route path="/careers" element={<CareerPage />} />
+        <Route path="/review" element={<ReviewPage />} />
+        <Route path="/contact" element={<ContactUsPage />} />
         <Route
           path="/activation/:activation_token"
           element={<ActivationPage />}

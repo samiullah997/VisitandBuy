@@ -9,7 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlineArrowRight, AiOutlineSend } from "react-icons/ai";
 import { TfiGallery } from "react-icons/tfi";
 import styles from "../styles/styles";
-const ENDPOINT = "https://socket-ecommerce-tu68.onrender.com/";
+// const ENDPOINT = "https://socket-ecommerce-tu68.onrender.com/";
+const ENDPOINT = "http://localhost:4000/";
 const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
 
 const UserInbox = () => {
@@ -303,7 +304,7 @@ const MessageList = ({
       <div className="relative">
         <img
           src={`${user?.avatar?.url}`}
-          alt=""
+          alt="avatar"
           className="w-[50px] h-[50px] rounded-full"
         />
         {online ? (
@@ -344,7 +345,7 @@ const SellerInbox = ({
         <div className="flex">
           <img
             src={`${userData?.avatar?.url}`}
-            alt=""
+            alt="avatar"
             className="w-[60px] h-[60px] rounded-full"
           />
           <div className="pl-3">
@@ -373,12 +374,13 @@ const SellerInbox = ({
                 <img
                   src={`${userData?.avatar?.url}`}
                   className="w-[40px] h-[40px] rounded-full mr-3"
-                  alt=""
+                  alt="avatar"
                 />
               )}
               {item.images && (
                 <img
                   src={`${item.images?.url}`}
+                  alt="item"
                   className="w-[300px] h-[300px] object-cover rounded-[10px] ml-2 mb-2"
                 />
               )}
