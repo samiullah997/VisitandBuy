@@ -15,7 +15,7 @@ const path = require("path");
 // );
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://192.168.1.4:3000', 'http://192.168.1.7:3000'],
+  origin: ['http://89.116.34.159:3000', 'http://192.168.1.4:3000', 'http://192.168.1.7:3000'],
   credentials: true
 }));
 
@@ -30,7 +30,7 @@ app.use("/test", (req, res) => {
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
 // config
-if (process.env.NODE_ENV !== "PRODUCTION") {
+if (process.env.NODE_ENV === "PRODUCTION") {
   require("dotenv").config({
     path: "config/.env",
   });
