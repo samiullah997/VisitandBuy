@@ -15,7 +15,7 @@ const path = require("path");
 // );
 
 app.use(cors({
-  origin: ['http://89.116.34.159:3000', 'http://localhost:3000', 'http://192.168.1.4:3000', 'http://192.168.1.7:3000'],
+  origin: ['http://visitandbuy.shop:3000', 'http://www.visitandbuy.shop:3000', 'http://localhost:3000'],
   credentials: true
 }));
 
