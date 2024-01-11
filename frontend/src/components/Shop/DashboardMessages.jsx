@@ -10,7 +10,7 @@ import { TfiGallery } from "react-icons/tfi";
 import socketIO from "socket.io-client";
 import ReactTimeAgo from 'react-time-ago'
 // const ENDPOINT = "https://socket-ecommerce-tu68.onrender.com/";
-const ENDPOINT = "socket.visitandbuy.shop";
+const ENDPOINT = "https://socket.visitandbuy.shop";
 const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
 
 const DashboardMessages = () => {
