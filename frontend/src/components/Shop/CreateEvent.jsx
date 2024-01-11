@@ -54,9 +54,8 @@ const CreateEvent = () => {
     if (success) {
       toast.success("Event created successfully!");
       navigate("/dashboard-events");
-      window.location.reload();
     }
-  }, [dispatch, error, success]);
+  }, [dispatch, error, success, navigate]);
 
   const handleImageChange = (e) => {
     e.preventDefault();
