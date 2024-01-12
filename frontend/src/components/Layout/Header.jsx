@@ -62,7 +62,7 @@ const Header = ({ activeHeading }) => {
               <img
                 width={152} height={90}
                 src={logo}
-                alt="HaramSales"
+                alt="Visit and Buy"
               />
               {/* <h1 ><span className="text-red-600">Haram</span>Sales</h1> */}
             </Link>
@@ -223,7 +223,7 @@ const Header = ({ activeHeading }) => {
             <img
                 width={100} height={40}
                 src={logo}
-                alt="HaramSales"
+                alt="Visit and Buy"
                 className="mt-3 cursor-pointer"
               />
               {/* <h2 ><span className="text-red-600">Haram</span>Sales</h2> */}

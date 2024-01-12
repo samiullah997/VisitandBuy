@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../../styles/styles";
+import categoryIcon from "../../Assests/category_icon.png";
 
 const DropDown = ({ categoriesData, setDropDown }) => {
   const navigate = useNavigate();
@@ -19,10 +20,10 @@ const DropDown = ({ categoriesData, setDropDown }) => {
             onClick={() => submitHandle(i)}
           >
             <img
-              src="https://www.freepnglogos.com/uploads/arrow/transparent-right-blue-arrow--3.png"
+              src={categoryIcon}
               style={{
-                width: "25px",
-                height: "25px",
+                width: "15px",
+                height: "15px",
                 objectFit: "contain",
                 marginLeft: "10px",
                 userSelect: "none",

@@ -11,7 +11,7 @@ const ContactUsPage = () => {
         <p className="text-gray-700 mb-6">
           We are here to assist you. If you have any questions, concerns, or
           feedback, please don't hesitate to reach out to us. Our dedicated team
-          at <span className="text-blue-500">HaramSales</span> is ready to
+          at <span className="text-blue-500">Visit and Buy</span> is ready to
           provide the support you need.
         </p>
 
@@ -55,7 +55,7 @@ const ContactUsPage = () => {
 
         <p className="text-gray-700 mt-6">
           We appreciate your feedback and look forward to serving you. Thank you
-          for choosing <span className="text-blue-500">HaramSales</span>!
+          for choosing <span className="text-blue-500">Visit and Buy</span>!
         </p>
       </div>
       <Footer />

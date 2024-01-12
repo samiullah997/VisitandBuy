@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { brandingData, categoriesData } from "../../../static/data";
 import styles from "../../../styles/styles";
+import rightArrow from "../../../Assests/right_arrow.png";
+import leftArrow from "../../../Assests/left_arrow.png";
 
 const Categories = () => {
   const navigate = useNavigate();
@@ -40,13 +42,14 @@ const Categories = () => {
       </div>
 
       <div className={`${styles.section} bg-white p-6 rounded-lg mb-12`}>
+        <h3 className="text-2xl font-bold mb-4">Categories</h3>
         <div className="flex items-center space-x-4">
-          <button
-            className="text-3xl font-bold cursor-pointer"
+          <div
+            className="text-xl font-bold cursor-pointer"
             onClick={() => handleScroll("left")}
           >
-            {"<"}
-          </button>
+            <img className="h-10 w-10"  src={leftArrow} alt="left-arrow" />
+          </div>
           <div
             className={`${styles.section} bg-white p-6 rounded-lg mb-12`}
             ref={categoriesRef}
@@ -96,12 +99,12 @@ const Categories = () => {
                 })}
             </div>
           </div>
-          <button
+          <div
             className="text-3xl font-bold cursor-pointer"
             onClick={() => handleScroll("right")}
           >
-            {">"}
-          </button>
+            <img className="h-10 w-10"  src={rightArrow} alt="right-arrow" />
+          </div>
         </div>
       </div>
     </>
