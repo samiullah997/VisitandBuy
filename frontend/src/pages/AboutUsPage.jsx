@@ -9,7 +9,7 @@ const AboutUsPage = () => {
       <div className="about-us-container p-8">
         <h2 className="text-3xl font-bold mb-4">About Us</h2>
         <p className="text-gray-700 mb-6">
-          Welcome to <span className="text-blue-500">HaramSales</span>, where
+          Welcome to <span className="text-blue-500">Visit and Buy</span>, where
           your shopping experience meets excellence. We are a passionate team
           dedicated to bringing you the best products with a seamless and
           enjoyable online shopping journey.
@@ -17,7 +17,7 @@ const AboutUsPage = () => {
 
         <h3 className="text-2xl font-bold mb-2">Our Mission</h3>
         <p className="text-gray-700 mb-6">
-          At <span className="text-blue-500">HaramSales</span>, our mission is
+          At <span className="text-blue-500">Visit and Buy</span>, our mission is
           to provide you with a curated selection of high-quality products that
           enhance your lifestyle. We strive to create an online platform that
           not only offers convenience but also fosters trust and satisfaction
@@ -67,7 +67,7 @@ const AboutUsPage = () => {
 
         <p className="text-gray-700">
           Thank you for choosing{" "}
-          <span className="text-blue-500">HaramSales</span>. We look forward to
+          <span className="text-blue-500">Visit and Buy</span>. We look forward to
           serving you and providing an exceptional online shopping experience.
         </p>
       </div>
