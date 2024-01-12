@@ -31,6 +31,9 @@ export const createProduct =
         stock,
         shopId,
         images,
+        {
+          withCredentials: true,
+        }
       );
       dispatch({
         type: "productCreateSuccess",
