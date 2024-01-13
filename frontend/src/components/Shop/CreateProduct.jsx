@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { createProduct } from "../../redux/actions/product";
 import { categoriesData } from "../../static/data";
 import { toast } from "react-toastify";
@@ -9,17 +9,38 @@ import { toast } from "react-toastify";
 const CreateProduct = () => {
   const { seller } = useSelector((state) => state.seller);
   const { success, error } = useSelector((state) => state.products);
+  const { allProducts } = useSelector((state) => state.products);
+  const [data, setData] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const params = useParams();
 
   const [images, setImages] = useState([]);
   const [name, setName] = useState("");
+  const [detail, setDetail] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [tags, setTags] = useState("");
   const [originalPrice, setOriginalPrice] = useState();
   const [discountPrice, setDiscountPrice] = useState();
   const [stock, setStock] = useState();
+  const [sourceName, setSourceName] = useState("");
+
+useEffect(() => {
+    if (params.id) {
+      const data = allProducts && allProducts.find((i) => i._id === params.id);
+      setData(data);
+      setName(data.name);
+      setDetail(data.detail);
+      setDescription(data.description);
+      setCategory(data.category);
+      setTags(data.tags);
+      setOriginalPrice(data.originalPrice);
+      setDiscountPrice(data.discountPrice);
+      setStock(data.stock);
+      setSourceName(data.sourceName);
+    }
+  }, [allProducts, params.id]);
 
   useEffect(() => {
     if (error) {
@@ -28,6 +49,7 @@ const CreateProduct = () => {
     if (success) {
       toast.success("Product created successfully!");
       navigate("/dashboard");
+      window.location.reload();
     }
   }, [dispatch, error, success, navigate]);
 
@@ -35,6 +57,7 @@ const CreateProduct = () => {
     e.preventDefault();
 
     let files = Array.from(e.target.files);
+    setImages([]);
     setImages((prevImages) => [...prevImages, ...files]);
   };
 
@@ -44,9 +67,10 @@ const CreateProduct = () => {
     const newForm = new FormData();
 
     images.forEach((image) => {
-      newForm.set("images", image);
+      newForm.append("images", image);
     });
     newForm.append("name", name);
+    newForm.append("detail", detail);
     newForm.append("description", description);
     newForm.append("category", category);
     newForm.append("tags", tags);
@@ -54,6 +78,7 @@ const CreateProduct = () => {
     newForm.append("discountPrice", discountPrice);
     newForm.append("stock", stock);
     newForm.append("shopId", seller._id);
+    newForm.append("sourceName", sourceName);
     dispatch(createProduct(newForm));
   };
 
@@ -75,6 +100,23 @@ const CreateProduct = () => {
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter your product name..."
           />
+        </div>
+        <br />
+        <div>
+          <label className="pb-2">
+            Product Details <span className="text-red-500">*</span>
+          </label>
+          <textarea
+            cols="30"
+            required
+            rows="4"
+            type="text"
+            name="details"
+            value={detail}
+            className="mt-2 appearance-none block w-full pt-2 px-3 border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            onChange={(e) => setDetail(e.target.value)}
+            placeholder="Enter your product details..."
+          ></textarea>
         </div>
         <br />
         <div>
@@ -126,11 +168,23 @@ const CreateProduct = () => {
         </div>
         <br />
         <div>
+          <label className="pb-2">Source Name</label>
+          <input
+            type="text"
+            name="sourceName"
+            value={sourceName}
+            className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            onChange={(e) => setSourceName(e.target.value)}
+            placeholder="Enter Source Name..."
+          />
+        </div>
+        <br />
+        <div>
           <label className="pb-2">Original Price</label>
           <input
             type="number"
             name="price"
-            value={originalPrice}
+            value={originalPrice || ""}
             className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             onChange={(e) => setOriginalPrice(e.target.value)}
             placeholder="Enter your product price..."
@@ -144,7 +198,7 @@ const CreateProduct = () => {
           <input
             type="number"
             name="price"
-            value={discountPrice}
+            value={discountPrice || ""}
             className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             onChange={(e) => setDiscountPrice(e.target.value)}
             placeholder="Enter your product price with discount..."
@@ -158,7 +212,7 @@ const CreateProduct = () => {
           <input
             type="number"
             name="price"
-            value={stock}
+            value={stock || ""}
             className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             onChange={(e) => setStock(e.target.value)}
             placeholder="Enter your product stock..."
