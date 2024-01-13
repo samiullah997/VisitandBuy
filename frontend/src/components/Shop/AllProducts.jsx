@@ -1,7 +1,7 @@
 import { Button } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
 import React, { useEffect } from "react";
-import { AiOutlineDelete, AiOutlineEye } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineEdit, AiOutlineEye } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllProductsShop } from "../../redux/actions/product";
@@ -24,40 +24,48 @@ const AllProducts = () => {
   };
 
   const columns = [
-    { field: "id", headerName: "Product Id", minWidth: 150, flex: 0.7 },
+    {
+      field: "productNo",
+      headerName: "Product No",
+      minWidth: 180,
+      flex: 0.2,
+    },
     {
       field: "name",
       headerName: "Name",
       minWidth: 180,
-      flex: 1.4,
+      flex: 0.4,
+    },
+    {
+      field: "sourceName",
+      headerName: "Source Name",
+      minWidth: 50,
+      flex: 0.3,
     },
     {
       field: "price",
       headerName: "Price",
       minWidth: 100,
-      flex: 0.6,
+      flex: 0.3,
     },
     {
       field: "Stock",
       headerName: "Stock",
-      type: "number",
       minWidth: 80,
-      flex: 0.5,
+      flex: 0.3,
     },
 
     {
       field: "sold",
       headerName: "Sold out",
-      type: "number",
       minWidth: 130,
-      flex: 0.6,
+      flex: 0.2,
     },
     {
       field: "Preview",
-      flex: 0.8,
+      flex: 0.2,
       minWidth: 100,
       headerName: "",
-      type: "number",
       sortable: false,
       renderCell: (params) => {
         return (
@@ -73,10 +81,9 @@ const AllProducts = () => {
     },
     {
       field: "Delete",
-      flex: 0.8,
+      flex: 0.2,
       minWidth: 120,
       headerName: "",
-      type: "number",
       sortable: false,
       renderCell: (params) => {
         return (
@@ -84,6 +91,24 @@ const AllProducts = () => {
             <Button onClick={() => handleDelete(params.id)}>
               <AiOutlineDelete size={20} />
             </Button>
+          </>
+        );
+      },
+    },
+    {
+      field: "Edit",
+      flex: 0.2,
+      minWidth: 120,
+      headerName: "",
+      sortable: false,
+      renderCell: (params) => {
+        return (
+          <>
+            <Link to={`/dashboard-create-product/${params.id}`}>
+              <Button>
+                <AiOutlineEdit size={20} />
+              </Button>
+            </Link>
           </>
         );
       },
@@ -96,7 +121,9 @@ const AllProducts = () => {
     products.forEach((item) => {
       row.push({
         id: item._id,
+        productNo: item.productNo,
         name: item.name,
+        sourceName: item.sourceName,
         // price: "US$ " + item.discountPrice,
         price: "Rs " + item.discountPrice,
         Stock: item.stock,
