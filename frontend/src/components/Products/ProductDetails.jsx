@@ -18,6 +18,7 @@ import { addTocart } from "../../redux/actions/cart";
 import { toast } from "react-toastify";
 import Ratings from "./Ratings";
 import axios from "axios";
+import Carousel from "react-multi-carousel";
 
 const ProductDetails = ({ data }) => {
   const { wishlist } = useSelector((state) => state.wishlist);
@@ -39,7 +40,11 @@ const ProductDetails = ({ data }) => {
   }, [data, wishlist, dispatch]);
 
   const incrementCount = () => {
-    setCount(count + 1);
+    if (data.stock > count) {
+      setCount(count + 1);
+    } else {
+      toast.error("Product stock limited!");
+    }
   };
 
   const decrementCount = () => {
@@ -111,6 +116,25 @@ const ProductDetails = ({ data }) => {
     }
   };
 
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 8,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 2,
+    },
+  };
+
   return (
     <div className="bg-white">
       {data ? (
@@ -123,38 +147,68 @@ const ProductDetails = ({ data }) => {
                   alt=""
                   className="w-[80%]"
                 />
-                <div className="w-full flex">
-                  {data &&
-                    data.images.map((i, index) => (
-                      <div
-                        className={`${
-                          select === 0 ? "border" : "null"
-                        } cursor-pointer`}
-                      >
-                        <img
-                          src={`${backend_url}${i}`}
-                          alt=""
-                          className="h-[200px] overflow-hidden mr-3 mt-3"
-                          onClick={() => setSelect(index)}
-                        />
-                      </div>
-                    ))}
-                  <div
-                    className={`${
-                      select === 1 ? "border" : "null"
-                    } cursor-pointer`}
-                  ></div>
+
+                <div style={{ position: "relative" }}>
+                  <Carousel
+                    swipeable={true}
+                    draggable={true}
+                    responsive={responsive}
+                    ssr={true} // means to render carousel on server-side.
+                    infinite={true}
+                    autoPlaySpeed={1000}
+                    keyBoardControl={true}
+                    customTransition="all .5"
+                    transitionDuration={500}
+                    containerClass="carousel-container"
+                    dotListClass="custom-dot-list-style"
+                    itemClass="carousel-item-padding-40-px"
+                  >
+                    {data &&
+                      data.images.map((i, index) => (
+                        <div className={` cursor-pointer`}>
+                          <img
+                            src={`${backend_url}${i}`}
+                            alt=""
+                            className={`${
+                              select === index
+                                ? "border border-black rounded"
+                                : "null"
+                            } h-[150px] w-[150px] p-1 overflow-hidden mr-3 mt-3 `}
+                            onClick={() => setSelect(index)}
+                          />
+                        </div>
+                      ))}
+                  </Carousel>
                 </div>
               </div>
               <div className="w-full 800px:w-[50%] pt-5">
                 <h1 className={`${styles.productTitle}`}>{data.name}</h1>
-                <div
-                  className={`${styles.button} !mt-6 !rounded !h-11 flex items-center`}
-                  onClick={() => addToCartHandler(data._id)}
-                >
-                  <span className="text-white flex items-center">
-                    Add to cart <AiOutlineShoppingCart className="ml-1" />
-                  </span>
+                <div className="flex flex-row">
+                  <div className="mt-6 p-1">
+                    <button
+                      className="bg-gradient-to-r h-10 w-10 from-teal-400 to-teal-500 text-white font-bold rounded-l px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
+                      onClick={decrementCount}
+                    >
+                      -
+                    </button>
+                    <span className="bg-gray-200 text-gray-800 font-medium px-4 py-[10px]">
+                      {count}
+                    </span>
+                    <button
+                      className="bg-gradient-to-l h-10 w-10 from-teal-400 to-teal-500 text-white font-bold rounded-r px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
+                      onClick={incrementCount}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div
+                    className={`${styles.button} !mt-6 !rounded !h-11 flex items-center`}
+                    onClick={() => addToCartHandler(data._id)}
+                  >
+                    <span className="text-white flex items-center">
+                      Add to cart <AiOutlineShoppingCart className="ml-1" />
+                    </span>
+                  </div>
                 </div>
                 {/* <Link to="/checkout">
                 <div
@@ -171,31 +225,14 @@ const ProductDetails = ({ data }) => {
                 </>
                 <div className="flex pt-3">
                   <h4 className={`${styles.productDiscountPrice}`}>
-                  Rs: {data.discountPrice} 
+                    Rs: {data.discountPrice}
                   </h4>
                   <h3 className={`${styles.price}`}>
-                    {data.originalPrice ? "Rs: "+data.originalPrice: null}
+                    {data.originalPrice ? "Rs: " + data.originalPrice : null}
                   </h3>
                 </div>
 
                 <div className="flex items-center mt-12 justify-between pr-3">
-                  <div>
-                    <button
-                      className="bg-gradient-to-r from-teal-400 to-teal-500 text-white font-bold rounded-l px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
-                      onClick={decrementCount}
-                    >
-                      -
-                    </button>
-                    <span className="bg-gray-200 text-gray-800 font-medium px-4 py-[11px]">
-                      {count}
-                    </span>
-                    <button
-                      className="bg-gradient-to-r from-teal-400 to-teal-500 text-white font-bold rounded-l px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
-                      onClick={incrementCount}
-                    >
-                      +
-                    </button>
-                  </div>
                   <div>
                     {click ? (
                       <AiFillHeart
@@ -216,7 +253,7 @@ const ProductDetails = ({ data }) => {
                     )}
                   </div>
                 </div>
-                
+
                 <div className="flex items-center pt-8">
                   <Link to={`/shop/preview/${data?.shop._id}`}>
                     <img

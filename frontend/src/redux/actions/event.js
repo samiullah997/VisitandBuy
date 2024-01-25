@@ -2,26 +2,57 @@ import axios from "axios";
 import { server } from "../../server";
 
 // create event
-export const createevent = (data) => async (dispatch) => {
-  try {
-    dispatch({
-      type: "eventCreateRequest",
-    });
+export const createevent =
+  (
+    images,
+    name,
+    description,
+    category,
+    tags,
+    originalPrice,
+    discountPrice,
+    stock,
+    shopId,
+    sourceName,
+    startDate,
+    endDate
+  ) =>
+  async (dispatch) => {
+    try {
+      dispatch({
+        type: "eventCreateRequest",
+      });
 
-    const { d } = await axios.post(`${server}/event/create-event`, data,{
-      withCredentials: true,
-    });
-    dispatch({
-      type: "eventCreateSuccess",
-      payload: d.event,
-    });
-  } catch (error) {
-    dispatch({
-      type: "eventCreateFail",
-      payload: error.response.data.message,
-    });
-  }
-};
+      const { data } = await axios.post(
+        `${server}/event/create-event`,
+        
+          images,
+          name,
+          description,
+          category,
+          tags,
+          originalPrice,
+          discountPrice,
+          stock,
+          shopId,
+          sourceName,
+          startDate,
+          endDate,
+        {
+          withCredentials: true,
+        }
+      );
+      dispatch({
+        type: "eventCreateSuccess",
+        payload: data.event,
+      });
+    } catch (error) {
+      dispatch({
+        type: "eventCreateFail",
+        payload: error.response.data.message,
+      });
+    }
+  };
 
 // get all events of a shop
 export const getAllEventsShop = (id) => async (dispatch) => {

@@ -35,3 +35,18 @@ export const sellerReducer = createReducer(initialState, {
     state.error = null;
   },
 });
+
+// activate seller --- admin
+export const activateSellerReducer = createReducer(initialState, {
+  activateSellerRequest: (state) => {
+    state.isLoading = true;
+  },
+  activateSellerSuccess: (state, action) => {
+    state.isLoading = false;
+    state.message = action.payload;
+  },
+  activateSellerFailed: (state, action) => {
+    state.isLoading = false;
+    state.error = action.payload;
+  },
+});

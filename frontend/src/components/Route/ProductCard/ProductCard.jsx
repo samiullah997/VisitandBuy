@@ -19,7 +19,7 @@ import { toast } from "react-toastify";
 import Ratings from "../../Products/Ratings";
 import { backend_url } from "../../../server";
 
-const ProductCard = ({ data,isEvent }) => {
+const ProductCard = ({ data, isEvent }) => {
   const { wishlist } = useSelector((state) => state.wishlist);
   const { cart } = useSelector((state) => state.cart);
   const [click, setClick] = useState(false);
@@ -62,39 +62,52 @@ const ProductCard = ({ data,isEvent }) => {
   return (
     <>
       <div className="w-full h-[370px] bg-white rounded-lg shadow-sm p-3 relative cursor-pointer">
-        <div className="flex justify-end"></div>
-        <Link to={`${isEvent === true ? `/product/${data._id}?isEvent=true` : `/product/${data._id}`}`}>
-          <img
-            src={`${backend_url}${data.images && data.images[0]}`}
-            alt=""
-            className="w-full h-[170px] object-contain"
-          />
-        </Link>
+        <div className="flex justify-start">
+          <Link
+            to={`${
+              isEvent === true
+                ? `/product/${data._id}?isEvent=true`
+                : `/product/${data._id}`
+            }`}
+          >
+            <img
+              src={`${backend_url}${data.images && data.images[0]}`}
+              alt=""
+              className="w-full h-[170px] object-contain"
+            />
+          </Link>
+        </div>
         <Link to={`/shop/preview/${data?.shop._id}`}>
-          <h5 className={`${styles.shop_name}`}>{data.shop.name}</h5>
+          <h5 className={`${styles.shop_name} `}>{data.shop.name}</h5>
         </Link>
-        <Link to={`${isEvent === true ? `/product/${data._id}?isEvent=true` : `/product/${data._id}`}`}>
-          <h4 className="pb-3 font-[500]">
-            {data.name.length > 40 ? data.name.slice(0, 40) + "..." : data.name}
+        <Link
+          to={`${
+            isEvent === true
+              ? `/product/${data._id}?isEvent=true`
+              : `/product/${data._id}`
+          }`}
+        >
+          <h4 className="pb-3 font-[500] text-xs">
+            {data.name.length > 40 ? data.name.slice(0, 50) + "..." : data.name}
           </h4>
 
           <div className="flex">
-          <Ratings rating={data?.ratings} />
+            <Ratings rating={data?.ratings} />
           </div>
 
-          <div className="py-2 flex items-center justify-between">
+          <div className="py-2 flex items-center justify-between text-[40px]">
             <div className="flex">
-              <h5 className={`${styles.productDiscountPrice}`}>
-              {"Rs: "}{data.originalPrice === 0
+              <h5 className={`${styles.productDiscountPrice} text-sm`}>
+                {"Rs: "}
+                {data.originalPrice === 0
                   ? data.originalPrice
                   : data.discountPrice}
-                
               </h5>
-              <h4 className={`${styles.price}`}>
-                {data.originalPrice ? "Rs: "+data.originalPrice : null}
+              <h4 className={`${styles.price} text-sm`}>
+                {data.originalPrice ? "Rs: " + data.originalPrice : null}
               </h4>
             </div>
-            <span className="font-[400] text-[17px] text-[#68d284]">
+            <span className="font-[400] text-[15px] text-[#68d284]">
               {data?.productNo}
             </span>
             {/* <span className="font-[400] text-[17px] text-[#68d284]">

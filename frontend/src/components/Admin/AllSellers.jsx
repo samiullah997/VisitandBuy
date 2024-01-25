@@ -8,7 +8,7 @@ import { RxCross1 } from "react-icons/rx";
 import axios from "axios";
 import { server } from "../../server";
 import { toast } from "react-toastify";
-import { getAllSellers } from "../../redux/actions/sellers";
+import { getAllSellers, activateSeller } from "../../redux/actions/sellers"; // Import the action to activate a seller
 import { Link } from "react-router-dom";
 
 const AllSellers = () => {
@@ -23,17 +23,22 @@ const AllSellers = () => {
 
   const handleDelete = async (id) => {
     await axios
-    .delete(`${server}/shop/delete-seller/${id}`, { withCredentials: true })
-    .then((res) => {
-      toast.success(res.data.message);
-    });
+      .delete(`${server}/shop/delete-seller/${id}`, { withCredentials: true })
+      .then((res) => {
+        toast.success(res.data.message);
+      });
 
-  dispatch(getAllSellers());
+    dispatch(getAllSellers());
+  };
+
+  const handleActivate = async (id) => {
+    await dispatch(activateSeller(id));
+    toast.success("Seller Status Updated successfully!");
+    dispatch(getAllSellers());
   };
 
   const columns = [
     { field: "id", headerName: "Seller ID", minWidth: 150, flex: 0.7 },
-
     {
       field: "name",
       headerName: "name",
@@ -54,7 +59,13 @@ const AllSellers = () => {
       minWidth: 130,
       flex: 0.7,
     },
-
+    {
+      field: "status",
+      headerName: "Status",
+      type: "text",
+      minWidth: 130,
+      flex: 0.7,
+    },
     {
       field: "joinedAt",
       headerName: "joinedAt",
@@ -63,29 +74,29 @@ const AllSellers = () => {
       flex: 0.8,
     },
     {
-        field: "  ",
-        flex: 1,
-        minWidth: 150,
-        headerName: "Preview Shop",
-        type: "number",
-        sortable: false,
-        renderCell: (params) => {
-          return (
-            <>
+      field: "  ",
+      flex: 0.5,
+      minWidth: 150,
+      headerName: "Preview Shop",
+      type: "number",
+      sortable: false,
+      renderCell: (params) => {
+        return (
+          <>
             <Link to={`/shop/preview/${params.id}`}>
-            <Button>
+              <Button>
                 <AiOutlineEye size={20} />
               </Button>
             </Link>
-            </>
-          );
-        },
+          </>
+        );
       },
+    },
     {
       field: " ",
-      flex: 1,
+      flex: 1.2,
       minWidth: 150,
-      headerName: "Delete Seller",
+      headerName: "Delete/Activate Seller",
       type: "number",
       sortable: false,
       renderCell: (params) => {
@@ -93,6 +104,9 @@ const AllSellers = () => {
           <>
             <Button onClick={() => setUserId(params.id) || setOpen(true)}>
               <AiOutlineDelete size={20} />
+            </Button>
+            <Button onClick={() => handleActivate(params.id)}>
+              Activate
             </Button>
           </>
         );
@@ -102,13 +116,14 @@ const AllSellers = () => {
 
   const row = [];
   sellers &&
-  sellers.forEach((item) => {
+    sellers.forEach((item) => {
       row.push({
         id: item._id,
         name: item?.name,
         email: item?.email,
         joinedAt: item.createdAt.slice(0, 10),
         address: item.address,
+        status: item.status,
       });
     });
 
@@ -120,7 +135,7 @@ const AllSellers = () => {
           <DataGrid
             rows={row}
             columns={columns}
-            pageSize={10}
+            pageSize={11}
             disableSelectionOnClick
             autoHeight
           />
@@ -143,7 +158,7 @@ const AllSellers = () => {
                 </div>
                 <div
                   className={`${styles.button} text-white text-[18px] !h-[42px] ml-4`}
-                  onClick={() =>  setOpen(false) || handleDelete(userId)}
+                  onClick={() => setOpen(false) || handleDelete(userId)}
                 >
                   confirm
                 </div>

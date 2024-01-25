@@ -23,3 +23,31 @@ export const getAllSellers = () => async (dispatch) => {
     });
   }
 };
+
+
+// Activate seller --- admin
+export const activateSeller = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "activateSellerRequest",
+    });
+
+    const { data } = await axios.put(
+      `${server}/shop/activate-seller/${id}`,
+      {},
+      {
+        withCredentials: true,
+      }
+    );
+
+    dispatch({
+      type: "activateSellerSuccess",
+      payload: data.message,
+    });
+  } catch (error) {
+    dispatch({
+      type: "activateSellerFailed",
+      payload: error.response.data.message,
+    });
+  }
+};

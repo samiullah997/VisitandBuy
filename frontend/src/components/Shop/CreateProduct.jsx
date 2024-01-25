@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { createProduct } from "../../redux/actions/product";
+import { createProduct, updateProduct } from "../../redux/actions/product"; // Add updateProduct action
 import { categoriesData } from "../../static/data";
 import { toast } from "react-toastify";
 
@@ -26,7 +26,7 @@ const CreateProduct = () => {
   const [stock, setStock] = useState();
   const [sourceName, setSourceName] = useState("");
 
-useEffect(() => {
+  useEffect(() => {
     if (params.id) {
       const data = allProducts && allProducts.find((i) => i._id === params.id);
       setData(data);
@@ -46,12 +46,16 @@ useEffect(() => {
     if (error) {
       toast.error(error);
     }
-    if (success) {
+    if(params.id && success){
+      toast.success("Product updated successfully!");
+      navigate("/dashboard");
+      window.location.reload();
+    }else if (success) {
       toast.success("Product created successfully!");
       navigate("/dashboard");
       window.location.reload();
     }
-  }, [dispatch, error, success, navigate]);
+  }, [dispatch, error, success, navigate, params.id]);
 
   const handleImageChange = (e) => {
     e.preventDefault();
@@ -61,32 +65,56 @@ useEffect(() => {
     setImages((prevImages) => [...prevImages, ...files]);
   };
 
+  const handleUpdate = (e) => {
+    e.preventDefault();
+
+    const updatedForm = new FormData();
+
+    images.forEach((image) => {
+      updatedForm.append("images", image);
+    });
+    updatedForm.append("name", name);
+    updatedForm.append("detail", detail);
+    updatedForm.append("description", description);
+    updatedForm.append("category", category);
+    updatedForm.append("tags", tags);
+    updatedForm.append("originalPrice", originalPrice);
+    updatedForm.append("discountPrice", discountPrice);
+    updatedForm.append("stock", stock);
+    updatedForm.append("sourceName", sourceName);
+    dispatch(updateProduct(params.id, updatedForm)); // Call updateProduct action
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newForm = new FormData();
+    if (params.id) {
+      handleUpdate(e);
+    } else {
+      const newForm = new FormData();
 
-    images.forEach((image) => {
-      newForm.append("images", image);
-    });
-    newForm.append("name", name);
-    newForm.append("detail", detail);
-    newForm.append("description", description);
-    newForm.append("category", category);
-    newForm.append("tags", tags);
-    newForm.append("originalPrice", originalPrice);
-    newForm.append("discountPrice", discountPrice);
-    newForm.append("stock", stock);
-    newForm.append("shopId", seller._id);
-    newForm.append("sourceName", sourceName);
-    dispatch(createProduct(newForm));
+      images.forEach((image) => {
+        newForm.append("images", image);
+      });
+      newForm.append("name", name);
+      newForm.append("detail", detail);
+      newForm.append("description", description);
+      newForm.append("category", category);
+      newForm.append("tags", tags);
+      newForm.append("originalPrice", originalPrice);
+      newForm.append("discountPrice", discountPrice);
+      newForm.append("stock", stock);
+      newForm.append("shopId", seller._id);
+      newForm.append("sourceName", sourceName);
+      dispatch(createProduct(newForm));
+    }
   };
 
   return (
     <div className="w-[90%] 800px:w-[50%] bg-white  shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll">
       <h5 className="text-[30px] font-Poppins text-center">Create Product</h5>
       {/* create product form */}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={params.id?handleUpdate:handleSubmit}>
         <br />
         <div>
           <label className="pb-2">
