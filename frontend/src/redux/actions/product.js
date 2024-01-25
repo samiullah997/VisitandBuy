@@ -99,6 +99,34 @@ export const deleteProduct = (id) => async (dispatch) => {
   }
 };
 
+// update product of a shop
+export const updateProduct = (id, productData) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "updateProductRequest",
+    });
+    
+
+    const { data } = await axios.put(
+      `${server}/product/update-shop-product/${id}`,
+      productData,
+      {
+        withCredentials: true,
+      }
+    );
+
+    dispatch({
+      type: "updateProductSuccess",
+      payload: data.message,
+    });
+  } catch (error) {
+    dispatch({
+      type: "updateProductFailed",
+      payload: error.response.data.message,
+    });
+  }
+};
+
 // get all products
 export const getAllProducts = () => async (dispatch) => {
   try {
@@ -114,6 +142,28 @@ export const getAllProducts = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: "getAllProductsFailed",
+      payload: error.response.data.message,
+    });
+  }
+};
+
+// get all product by category
+export const getAllProductsByCategory = (category) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "getAllProductsByCategoryRequest",
+    });
+
+    const { data } = await axios.get(
+      `${server}/product/get-all-products-by-category/${category}`
+    );
+    dispatch({
+      type: "getAllProductsByCategorySuccess",
+      payload: data.products,
+    });
+  } catch (error) {
+    dispatch({
+      type: "getAllProductsByCategoryFailed",
       payload: error.response.data.message,
     });
   }

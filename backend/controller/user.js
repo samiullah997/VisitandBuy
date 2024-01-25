@@ -41,14 +41,90 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
 
     const activationToken = createActivationToken(user);
 
-    const activationUrl = `https://visitandbuy.shop/activation/${activationToken}`;
-    // const activationUrl = `http://localhost:3000/activation/${activationToken}`;
+    // const activationUrl = `https://visitandbuy.shop/activation/${activationToken}`;
+    const activationUrl = `http://localhost:3000/activation/${activationToken}`;
 
     try {
       await sendMail({
         email: user.email,
         subject: "Activate your account",
-        message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
+        message: `<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Activate Your Account - ${user.name}</title>
+            <style>
+                body {
+                    font-family: 'Arial', sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                }
+        
+                .container {
+                    max-width: 600px;
+                    margin: 20px auto;
+                    padding: 20px;
+                    background-color: #fff;
+                    border-radius: 5px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+        
+                h2 {
+                    color: #333;
+                }
+        
+                p {
+                    color: #555;
+                    line-height: 1.6;
+                }
+        
+                button {
+                    display: inline-block;
+                    padding: 10px;
+                    background-color: #4CAF50;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    text-decoration: none;
+                }
+        
+                a {
+                    color: #4CAF50;
+                    text-decoration: none;
+                }
+        
+                button:hover, a:hover {
+                    opacity: 0.8;
+                }
+            </style>
+        </head>
+        <body>
+        
+            <div class="container">
+                <h2>Activate Your Account - ${user.name}</h2>
+        
+                <p>Dear ${user.name},</p>
+        
+                <p>We are thrilled to have you join Visit and Buy! Your account is almost ready, and all that's left is to activate it.</p>
+        
+                <p>Click on the button below to complete the activation process:</p> <br/> <a href="${activationUrl}"><button>Activate Now</button></a> <br/>
+
+                <p>If the button above doesn't work, you can also click on the link below:</p>
+                <p><a href="${activationUrl}">${activationUrl}</a></p>        
+                <p>This activation link is valid for the next 5 minutes. If you have any questions or need assistance, please contact our support team at <a href="mailto:visitsandbuy@gmail.com">visitsandbuy@gmail.com</a>.</p>
+        
+                <p>Thank you for choosing Visit and Buy. We look forward to serving you!</p>
+        
+                <p>Best regards,<br>
+                Visit and Buy<br>
+                visitsandbuy@gmail.com</p>
+            </div>
+        
+        </body>
+        </html>`,
       });
       res.status(201).json({
         success: true,

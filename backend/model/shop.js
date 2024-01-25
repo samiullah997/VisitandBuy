@@ -32,6 +32,11 @@ const shopSchema = new mongoose.Schema({
     type: String,
     default: "Seller",
   },
+  status: {
+    type: String,
+    default: "Pending",
+  }
+  ,
   avatar: {
     type: String,
     required: true,

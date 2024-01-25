@@ -26,9 +26,8 @@ router.post(
         const productData = req.body;
         productData.images = imageUrls;
         productData.shop = shop;
-        // find product length
-        const productLength = await Product.find().countDocuments();
-        productData.productNo = "VB-"+(productLength+1);
+        // generate unique id for product from current time
+        productData.productNo = "VB-"+Date.now().toString(36).substr(2, 9);
 
         const product = await Product.create(productData);
 
@@ -97,12 +96,80 @@ router.delete(
   })
 );
 
+// update product of a shop
+router.put(
+  "/update-shop-product/:id",
+  isSeller,
+  upload.array("images"),
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const productId = req.params.id;
+      const productData = req.body;
+      const files = req.files;
+      if(files.length > 0){        
+      const imageUrls = files.map((file) => `${file.filename}`);
+      productData.images = imageUrls;
+      }
+
+      // delete previous images
+      if (productData.images) {
+        const product = await Product.findById(productId);
+
+        product.images.forEach((imageUrl) => {
+          const filename = imageUrl;
+          const filePath = `uploads/${filename}`;
+
+          fs.unlink(filePath, (err) => {
+            if (err) {
+              console.log(err);
+            }
+          });
+        });
+      }
+
+      const product = await Product.findByIdAndUpdate(productId, productData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+      });
+
+      if (!product) {
+        return next(new ErrorHandler("Product not found with this id!", 500));
+      }
+
+      res.status(201).json({
+        success: true,
+        message: "Product Updated successfully!",
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error, 400));
+    }
+  })
+);
+
 // get all products
 router.get(
   "/get-all-products",
   catchAsyncErrors(async (req, res, next) => {
     try {
       const products = await Product.find().sort({ createdAt: -1 });
+
+      res.status(201).json({
+        success: true,
+        products,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error, 400));
+    }
+  })
+);
+
+//get all products of a category
+router.get(
+  "/get-all-products-category/:category",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const products = await Product.find({ category: req.params.category });
 
       res.status(201).json({
         success: true,
