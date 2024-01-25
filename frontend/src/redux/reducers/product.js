@@ -45,6 +45,23 @@ export const productReducer = createReducer(initialState, {
     state.error = action.payload;
   },
 
+  // update product of a shop
+  updateProductRequest: (state) => {
+    state.isLoading = true;
+  },
+  updateProductSuccess: (state, action) => {
+    state.isLoading = false;
+    state.product = action.payload;
+    state.success = true;
+  }
+  ,
+  updateProductFailed: (state, action) => {
+    state.isLoading = false;
+    state.error = action.payload;
+    state.success = false;
+  }
+  ,
+
   // get all products
   getAllProductsRequest: (state) => {
     state.isLoading = true;
@@ -54,6 +71,19 @@ export const productReducer = createReducer(initialState, {
     state.allProducts = action.payload;
   },
   getAllProductsFailed: (state, action) => {
+    state.isLoading = false;
+    state.error = action.payload;
+  },
+
+  // get all products of a category
+  getAllProductsCategoryRequest: (state) => {
+    state.isLoading = true;
+  },
+  getAllProductsCategorySuccess: (state, action) => {
+    state.isLoading = false;
+    state.products = action.payload;
+  },
+  getAllProductsCategoryFailed: (state, action) => {
     state.isLoading = false;
     state.error = action.payload;
   },
