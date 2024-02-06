@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Visit and Buy",
+  "description": "Explore the ultimate online shopping experience at VisitandBuy, your go-to e-commerce destination. Discover a vast array of high-quality products, from cutting-edge electronics to stylish fashion and essential home goods, all at competitive prices. With VisitandBuy, enjoy the convenience of secure online transactions, a user-friendly interface, and prompt doorstep delivery. Elevate your online shopping journey with us and embrace a seamless blend of quality and affordability. VisitandBuy - Where Smart Shopping Meets Exceptional Value.",
+  "name": "Explore the ultimate online shopping experience at VisitandBuy, your go-to e-commerce destination. Discover a vast array of high-quality products, from cutting-edge electronics to stylish fashion and essential home goods, all at competitive prices. With VisitandBuy, enjoy the convenience of secure online transactions, a user-friendly interface, and prompt doorstep delivery. Elevate your online shopping journey with us and embrace a seamless blend of quality and affordability. VisitandBuy - Where Smart Shopping Meets Exceptional Value.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,12 +9,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "../src/Assests/logo.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "../src/Assests/logo.png",
       "type": "image/png",
       "sizes": "512x512"
     }
