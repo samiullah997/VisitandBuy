@@ -183,8 +183,8 @@ const ProductDetails = ({ data }) => {
               </div>
               <div className="w-full 800px:w-[50%] pt-5">
                 <h1 className={`${styles.productTitle}`}>{data.name}</h1>
-                <div className="flex flex-row">
-                  <div className="mt-6 p-1">
+                <div className="flex flex-row items-center">
+                  <div className="p-1">
                     <button
                       className="bg-gradient-to-r h-10 w-10 from-teal-400 to-teal-500 text-white font-bold rounded-l px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
                       onClick={decrementCount}
@@ -202,7 +202,7 @@ const ProductDetails = ({ data }) => {
                     </button>
                   </div>
                   <div
-                    className={`${styles.button} !mt-6 !rounded !h-11 flex items-center`}
+                    className={`${styles.button} !rounded !h-11 flex items-center`}
                     onClick={() => addToCartHandler(data._id)}
                   >
                     <span className="text-white flex items-center">
@@ -218,11 +218,6 @@ const ProductDetails = ({ data }) => {
                   </span>
                 </div>
                 </Link> */}
-                <>
-                  <p className="py-2 text-[18px] leading-8 pb-10 whitespace-pre-line">
-                    {data.detail}
-                  </p>
-                </>
                 <div className="flex pt-3">
                   <h4 className={`${styles.productDiscountPrice}`}>
                     Rs: {data.discountPrice}
@@ -231,8 +226,13 @@ const ProductDetails = ({ data }) => {
                     {data.originalPrice ? "Rs: " + data.originalPrice : null}
                   </h3>
                 </div>
-
-                <div className="flex items-center mt-12 justify-between pr-3">
+                <>
+                  <p className="py-2 text-[18px] leading-8 pb-10 whitespace-pre-line">
+                    {data.detail}
+                  </p>
+                </>
+                <hr/>
+                <div className="flex items-center mt-4 justify-between pr-3">
                   <div>
                     {click ? (
                       <AiFillHeart

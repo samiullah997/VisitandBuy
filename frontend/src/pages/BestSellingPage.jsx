@@ -6,6 +6,7 @@ import Loader from "../components/Layout/Loader";
 import ProductCard from "../components/Route/ProductCard/ProductCard";
 import styles from "../styles/styles";
 import Footer from "../components/Layout/Footer";
+import { Helmet } from "react-helmet";
 
 const BestSellingPage = () => {
   const [data, setData] = useState([]);
@@ -19,6 +20,21 @@ const BestSellingPage = () => {
 
   return (
    <>
+   <Helmet>
+      <title>Visit And Buy|Best Selling</title>
+      <meta
+        name="description"
+        content="VisitandBuy is a one-stop shop for all your shopping needs. We offer a wide range of products from top brands at the best prices."
+      />
+      <meta property="og:title" content="VisitandBuy|Best Selling" />
+      <meta property="og:image" content="../Assests/logo.png" />
+      <meta property="og:url" content="https://visitandbuy.shop" />
+      <meta
+        property="og:description"
+        content="VisitandBuy is a one-stop shop for all your shopping needs. We offer a wide range of products from top brands at the best prices."
+      />
+      <meta property="og:site_name" content="VisitandBuy" />
+   </Helmet>
    {
     isLoading ? (
       <Loader />

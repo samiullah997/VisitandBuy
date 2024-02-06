@@ -64,6 +64,7 @@ import axios from "axios";
 import { server } from "./server";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { Helmet } from "react-helmet";
 
 const App = () => {
   const [stripeApikey, setStripeApiKey] = useState("");
@@ -82,6 +83,36 @@ const App = () => {
 
   return (
     <BrowserRouter>
+    <Helmet>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Explore the ultimate online shopping experience at VisitandBuy, your go-to e-commerce destination. Discover a vast array of high-quality products, from cutting-edge electronics to stylish fashion and essential home goods, all at competitive prices. With VisitandBuy, enjoy the convenience of secure online transactions, a user-friendly interface, and prompt doorstep delivery. Elevate your online shopping journey with us and embrace a seamless blend of quality and affordability. VisitandBuy - Where Smart Shopping Meets Exceptional Value." />
+    <meta name="keywords" content="visitandbuy,visitandbuy.shop" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>Visit and Buy</title>
+
+    <meta property="og:site_name" content="VisitandBuy"/>
+
+    <meta property="og:title" content="Visit and Buy" />
+    <meta property="og:description" content="Explore the ultimate online shopping experience at VisitandBuy, your go-to e-commerce destination. Discover a vast array of high-quality products, from cutting-edge electronics to stylish fashion and essential home goods, all at competitive prices. With VisitandBuy, enjoy the convenience of secure online transactions, a user-friendly interface, and prompt doorstep delivery. Elevate your online shopping journey with us and embrace a seamless blend of quality and affordability. VisitandBuy - Where Smart Shopping Meets Exceptional Value." />
+    <meta property="og:image" content="../src/Assests/logo.png" />
+    <meta property="og:url" content="https://www.visitandbuy.shop" />
+
+    <meta name="twitter:card" content="Explore the ultimate online shopping experience at VisitandBuy, your go-to e-commerce destination. Discover a vast array of high-quality products, from cutting-edge electronics to stylish fashion and essential home goods, all at competitive prices. With VisitandBuy, enjoy the convenience of secure online transactions, a user-friendly interface, and prompt doorstep delivery. Elevate your online shopping journey with us and embrace a seamless blend of quality and affordability. VisitandBuy - Where Smart Shopping Meets Exceptional Value." />
+    <meta name="twitter:title" content="Visit and Buy" />
+    <meta name="twitter:description" content="Explore the ultimate online shopping experience at VisitandBuy, your go-to e-commerce destination. Discover a vast array of high-quality products, from cutting-edge electronics to stylish fashion and essential home goods, all at competitive prices. With VisitandBuy, enjoy the convenience of secure online transactions, a user-friendly interface, and prompt doorstep delivery. Elevate your online shopping journey with us and embrace a seamless blend of quality and affordability. VisitandBuy - Where Smart Shopping Meets Exceptional Value." />
+    <meta name="twitter:image" content="../src/Assests/logo.png" />
+
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="visit and buy"/>
+
+    <meta name="facebook-domain-verification" content="f7loq62ebphxoka1in7bqqpg8tbnwn" />
+
+    <script defer="defer" src="/static/js/main.1bf9a4e7.js"></script>
+    <link href="/static/css/main.900e2c26.css" rel="stylesheet"/>
+    </Helmet>
       {stripeApikey && (
         <Elements stripe={loadStripe(stripeApikey)}>
           <Routes>

@@ -1,10 +1,24 @@
 import React from "react";
 import Footer from "../components/Layout/Footer";
 import Header from "../components/Layout/Header";
+import { Helmet } from "react-helmet";
 
 const ReviewPage = () => {
   return (
     <>
+      <Helmet>
+        <title>Visit And Buy|Customer Reviews</title>
+        <meta
+          name="description"
+          content="Discover what our valued customers are saying about their experiences with Visit and Buy. We take pride in providing excellent products and services, and our customers' feedback reflects their satisfaction."
+        />
+
+        <meta property="og:title" content="VisitandBuy|Customer Reviews" />
+        <meta property="og:image" content="../Assests/logo.png" />
+        <meta property="og:url" content="https://visitandbuy.shop" />
+        <meta property="og:description" content="Discover what our valued customers are saying about their experiences with Visit and Buy. We take pride in providing excellent products and services, and our customers' feedback reflects their satisfaction." />
+        <meta property="og:site_name" content="VisitandBuy" />
+      </Helmet>
       <Header activeHeading={1} />
       <div className="review-container p-8">
         <h2 className="text-3xl font-bold mb-4">Customer Reviews</h2>
