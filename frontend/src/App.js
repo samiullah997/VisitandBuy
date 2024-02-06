@@ -90,7 +90,7 @@ const App = () => {
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Explore the ultimate online shopping experience at VisitandBuy, your go-to e-commerce destination. Discover a vast array of high-quality products, from cutting-edge electronics to stylish fashion and essential home goods, all at competitive prices. With VisitandBuy, enjoy the convenience of secure online transactions, a user-friendly interface, and prompt doorstep delivery. Elevate your online shopping journey with us and embrace a seamless blend of quality and affordability. VisitandBuy - Where Smart Shopping Meets Exceptional Value." />
     <meta name="keywords" content="visitandbuy,visitandbuy.shop" />
-    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="apple-touch-icon" href="../src/Assests/logo.png" />
     <link rel="manifest" href="/manifest.json" />
     <title>Visit and Buy</title>
 
