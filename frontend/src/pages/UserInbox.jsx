@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlineArrowRight, AiOutlineSend } from "react-icons/ai";
 import { TfiGallery } from "react-icons/tfi";
 import styles from "../styles/styles";
+import { Helmet } from "react-helmet";
 // const ENDPOINT = "https://socket-ecommerce-tu68.onrender.com/";
 const ENDPOINT = "https://socket.visitandbuy.shop";
 const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
@@ -205,6 +206,21 @@ const UserInbox = () => {
 
   return (
     <div className="w-full">
+      <Helmet>
+        <title>Visit And Buy|Inbox</title>
+        <meta
+          name="description"
+          content="VisitandBuy is a one-stop shop for all your shopping needs. We offer a wide range of products from top brands at the best prices."
+        />
+        <meta property="og:title" content="VisitandBuy|Inbox" />
+        <meta property="og:image" content="../Assests/logo.png" />
+        <meta property="og:url" content="https://visitandbuy.shop" />
+        <meta
+          property="og:description"
+          content="VisitandBuy is a one-stop shop for all your shopping needs. We offer a wide range of products from top brands at the best prices."
+        />
+        <meta property="og:site_name" content="VisitandBuy" />
+      </Helmet>
       {!open && (
         <>
           <Header />

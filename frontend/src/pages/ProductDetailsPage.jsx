@@ -5,6 +5,7 @@ import Header from "../components/Layout/Header";
 import ProductDetails from "../components/Products/ProductDetails";
 import SuggestedProduct from "../components/Products/SuggestedProduct";
 import { useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
 
 const ProductDetailsPage = () => {
   const { allProducts } = useSelector((state) => state.products);
@@ -26,6 +27,21 @@ const ProductDetailsPage = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Visit And Buy|Product Details</title>
+        <meta
+          name="description"
+          content="VisitandBuy is a one-stop shop for all your shopping needs. We offer a wide range of products from top brands at the best prices."
+        />
+        <meta property="og:title" content="VisitandBuy|Product Details" />
+        <meta property="og:image" content="../Assests/logo.png" />
+        <meta property="og:url" content="https://visitandbuy.shop" />
+        <meta
+          property="og:description"
+          content="VisitandBuy is a one-stop shop for all your shopping needs. We offer a wide range of products from top brands at the best prices."
+        />
+        <meta property="og:site_name" content="VisitandBuy" />
+      </Helmet>
       <Header />
       <ProductDetails data={data} />
         {

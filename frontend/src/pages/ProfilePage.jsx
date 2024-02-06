@@ -5,6 +5,7 @@ import Loader from "../components/Layout/Loader";
 import ProfileSideBar from "../components/Profile/ProfileSidebar";
 import ProfileContent from "../components/Profile/ProfileContent";
 import { useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
 
 const ProfilePage = () => {
   const { loading } = useSelector((state) => state.user);
@@ -12,6 +13,21 @@ const ProfilePage = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Visit And Buy|Profile</title>
+        <meta
+          name="description"
+          content="VisitandBuy is a one-stop shop for all your shopping needs. We offer a wide range of products from top brands at the best prices."
+        />
+        <meta property="og:title" content="VisitandBuy|Profile" />
+        <meta property="og:image" content="../Assests/logo.png" />
+        <meta property="og:url" content="https://visitandbuy.shop" />
+        <meta
+          property="og:description"
+          content="VisitandBuy is a one-stop shop for all your shopping needs. We offer a wide range of products from top brands at the best prices."
+        />
+        <meta property="og:site_name" content="VisitandBuy" />
+      </Helmet>
       {loading ? (
         <Loader />
       ) : (

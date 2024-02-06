@@ -4,6 +4,7 @@ import AdminSideBar from "../components/Admin/Layout/AdminSideBar";
 import { DataGrid } from "@material-ui/data-grid";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllOrdersOfAdmin } from "../redux/actions/order";
+import { Helmet } from "react-helmet";
 
 const AdminDashboardOrders = () => {
   const dispatch = useDispatch();
@@ -67,6 +68,21 @@ const AdminDashboardOrders = () => {
     });
   return (
     <div>
+      <Helmet>
+        <title>Visit And Buy|Admin Orders</title>
+        <meta
+          name="description"
+          content="VisitandBuy is a one-stop shop for all your shopping needs. We offer a wide range of products from top brands at the best prices."
+        />
+        <meta property="og:title" content="VisitandBuy|Admin Orders" />
+        <meta property="og:image" content="../Assests/logo.png" />
+        <meta property="og:url" content="https://visitandbuy.shop" />
+        <meta
+          property="og:description"
+          content="VisitandBuy is a one-stop shop for all your shopping needs. We offer a wide range of products from top brands at the best prices."
+        />
+        <meta property="og:site_name" content="VisitandBuy" />
+      </Helmet>
       <AdminHeader />
       <div className="w-full flex">
         <div className="flex items-start justify-between w-full">

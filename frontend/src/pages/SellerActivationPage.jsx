@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { frontend_url, server } from "../server";
+import { Helmet } from "react-helmet";
 
 const SellerActivationPage = () => {
   const { activation_token } = useParams();
@@ -41,6 +42,22 @@ const SellerActivationPage = () => {
         <p>Your token is expired!</p>
       ) : (
         <>
+          <Helmet>
+            <title>Visit And Buy|Seller Activation</title>
+            <meta
+              name="description"
+              content="Thank you for joining our platform as a seller. We're excited to have you on board! Get ready to showcase your products to a wide audience and grow your business with us."
+            />
+            
+            <meta property="og:title" content="VisitandBuy|Seller Activation" />
+            <meta property="og:image" content="../Assests/logo.png" />
+            <meta property="og:url" content="https://visitandbuy.shop" />
+            <meta
+              property="og:description"
+              content="Thank you for joining our platform as a seller. We're excited to have you on board! Get ready to showcase your products to a wide audience and grow your business with us."
+            />
+            <meta property="og:site_name" content="VisitandBuy" />
+          </Helmet>
           <div className="flex items-center justify-center h-screen bg-gray-100">
             <div className="bg-white p-8 rounded shadow-md max-w-md w-full">
               <h1 className="text-2xl font-bold mb-6 text-gray-800">

@@ -1,10 +1,27 @@
 import React from "react";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
+import { Helmet } from "react-helmet";
 
 const AboutUsPage = () => {
   return (
     <>
+      <Helmet>
+        <title>Visit And Buy|About Us</title>
+        <meta
+          name="description"
+          content="VisitandBuy is a one-stop shop for all your shopping needs. We offer a wide range of products from top brands at the best prices."
+        />
+
+        <meta property="og:title" content="VisitandBuy|About Us" />
+        <meta property="og:image" content="../Assests/logo.png" />
+        <meta property="og:url" content="https://visitandbuy.shop" />
+        <meta
+          property="og:description"
+          content="VisitandBuy is a one-stop shop for all your shopping needs. We offer a wide range of products from top brands at the best prices."
+        />
+        <meta property="og:site_name" content="VisitandBuy" />
+      </Helmet>
       <Header activeHeading={1} />
       <div className="about-us-container p-8">
         <h2 className="text-3xl font-bold mb-4">About Us</h2>

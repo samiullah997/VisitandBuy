@@ -1,10 +1,27 @@
 import React from "react";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
+import { Helmet } from "react-helmet";
 
 const CareerPage = () => {
   return (
     <>
+      <Helmet>
+        <title>Visit And Buy|Careers</title>
+        <meta
+          name="description"
+          content="Join Visit and Buy and be part of a dynamic team that is passionate about making a difference. Explore exciting career opportunities with us."
+        />
+
+        <meta property="og:title" content="VisitandBuy|Careers" />
+        <meta property="og:image" content="../Assests/logo.png" />
+        <meta property="og:url" content="https://visitandbuy.shop" />
+        <meta
+          property="og:description"
+          content="Join Visit and Buy and be part of a dynamic team that is passionate about making a difference. Explore exciting career opportunities with us."
+        />
+        <meta property="og:site_name" content="VisitandBuy" />
+      </Helmet>
       <Header activeHeading={1} />
       <div className="career-container p-8">
         <h2 className="text-3xl font-bold mb-4">Join Our Team</h2>
