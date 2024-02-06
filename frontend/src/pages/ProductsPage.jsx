@@ -6,6 +6,7 @@ import Header from "../components/Layout/Header";
 import Loader from "../components/Layout/Loader";
 import ProductCard from "../components/Route/ProductCard/ProductCard";
 import styles from "../styles/styles";
+import { Helmet } from "react-helmet";
 
 const ProductsPage = () => {
   const [searchParams] = useSearchParams();
@@ -27,6 +28,21 @@ const ProductsPage = () => {
 
   return (
   <>
+  <Helmet>
+    <title>Visit And Buy|Products</title>
+    <meta
+      name="description"
+      content="VisitandBuy is a one-stop shop for all your shopping needs. We offer a wide range of products from top brands at the best prices."
+    />
+    <meta property="og:title" content="VisitandBuy|Products" />
+    <meta property="og:image" content="../Assests/logo.png" />
+    <meta property="og:url" content="https://visitandbuy.shop" />
+    <meta
+      property="og:description"
+      content="VisitandBuy is a one-stop shop for all your shopping needs. We offer a wide range of products from top brands at the best prices."
+    />
+    <meta property="og:site_name" content="VisitandBuy" />
+  </Helmet>
   {
     isLoading ? (
       <Loader />

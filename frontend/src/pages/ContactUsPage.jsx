@@ -1,10 +1,27 @@
 import React from "react";
 import Footer from "../components/Layout/Footer";
 import Header from "../components/Layout/Header";
+import { Helmet } from "react-helmet";
 
 const ContactUsPage = () => {
   return (
     <>
+      <Helmet>
+        <title>Visit And Buy|Contact Us</title>
+        <meta
+          name="description"
+          content="We are here to assist you. If you have any questions, concerns, or feedback, please don't hesitate to reach out to us. Our dedicated team at Visit and Buy is ready to provide the support you need."
+        />
+
+        <meta property="og:title" content="VisitandBuy|Contact Us" />
+        <meta property="og:image" content="../Assests/logo.png" />
+        <meta property="og:url" content="https://visitandbuy.shop" />
+        <meta
+          property="og:description"
+          content="We are here to assist you. If you have any questions, concerns, or feedback, please don't hesitate to reach out to us. Our dedicated team at Visit and Buy is ready to provide the support you need."
+        />
+        <meta property="og:site_name" content="VisitandBuy" />
+      </Helmet>
       <Header activeHeading={1} />
       <div className="contact-us-container p-8">
         <h2 className="text-3xl font-bold mb-4">Contact Us</h2>
